@@ -3,6 +3,8 @@ import {ThemedTexts} from "@/components/ThemedTexts";
 import {useThemeColors} from "@/hooks/useThemeColors";
 import {Card} from "@/components/Card"
 import {PokemonCard} from "@/components/pokemon/PokemonCard";
+import {useFetchQuery} from "@/hooks/useFetchQuery";
+import {getPokemon, getPokemonId} from "@/functions/pokemon";
 
 // gérer le styles des composants. l'utiliser permet de gérer les syntaxes des styles
 const styleSheets = StyleSheet.create({
@@ -28,10 +30,8 @@ const styleSheets = StyleSheet.create({
 })
 export default function Index() {
     const colors = useThemeColors()
-    const pokemons = Array.from({length: 35}, (_, k) => ({
-        name: 'Pokémon name',
-        id: k + 1
-    }))
+    const {data} = useFetchQuery('/pokemon?limit=21')
+    const pokemons = data?.results ?? []
   return (
     //   SafeAreaView rajoute automatiquement des paddings et placera correctement les éléments
     <SafeAreaView style={[styleSheets.container, {backgroundColor: colors.tint}]}>
@@ -45,8 +45,8 @@ export default function Index() {
                 numColumns={3}
                 contentContainerStyle={[styleSheets.gridgap, styleSheets.list]}
                 columnWrapperStyle={styleSheets.gridgap}
-                renderItem={({item}) => <PokemonCard id={item.id} name={item.name} style={{flex: 1/3}}/>}
-                keyExtractor={(item) => item.id}
+                renderItem={({item}) => <PokemonCard id={getPokemonId(item.url)} name={item.name} style={{flex: 1/3}}/>}
+                keyExtractor={(item) => item.url}
             />
         </Card>
     </SafeAreaView>
