@@ -6,6 +6,7 @@ export const Colors = {
         grayMedium: '#666666',
         grayLight: '#EFEFEF',
         grayWhite: '#FFFFFF',
+        backgroundColor: '#EFEFEF',
     },
     // mode claire
     light: {
@@ -14,6 +15,7 @@ export const Colors = {
         grayMedium: '#666666',
         grayLight: '#EFEFEF',
         grayWhite: '#FFFFFF',
+        backgroundColor: '#EFEFEF',
     },
     type: {
         bug: '#A7B723',

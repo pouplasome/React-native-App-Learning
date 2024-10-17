@@ -12,6 +12,7 @@ export function Card({style, ...reset}: Props) {
 
 const styles: ViewStyle = {
     borderRadius: 8, // Example value
+    overflow: 'hidden',
     backgroundColor: '#fff', // Correct property for background color
     ...Shadows.dp2
 };
